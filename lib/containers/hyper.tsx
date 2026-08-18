@@ -79,9 +79,7 @@ class Hyper extends React.PureComponent<HyperProps> {
   }
 
   componentDidMount() {
-    // config is loaded into the store before the first render, so the
-    // componentDidUpdate fallback above never fires for a fresh window —
-    // paint the background on mount too or new windows lose transparency (#6531)
+    // config loads before first render, so the componentDidUpdate fallback never fires for a fresh window (#6531)
     document.body.style.backgroundColor = this.props.backgroundColor;
     this.attachKeyListeners();
     window.rpc.on('term selectAll', this.handleSelectAll);
